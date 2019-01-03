@@ -1,0 +1,406 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：项目立项新增
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>项目立项新增</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #eff5fb;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		.content_center {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			margin-bottom: 10px;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.content_center p {
+			display: block;
+			width: 90%;
+			margin: 10px auto;
+			color: #000306;
+		}
+		
+		.content_center p:first-child {
+			font-weight: bold;
+		}
+		
+		.content_center span {
+			color: #E72F2E;
+		}
+		
+		.content_center textarea {
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin: 10px auto;
+			border: 0;
+			outline: none;
+			resize: none;
+			padding-left: 5px;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+		}
+		
+		#planned_amount input {
+			background-image: url(img/per.png);
+			background-repeat: no-repeat;
+			background-size: 7% 40%;
+			background-position: right center;
+			padding-right: 5%;
+		}
+		
+		.content_center button {
+			width: 60px;
+			height: 40px;
+			border-radius: 5px;
+			border: none;
+			margin-left: 5%;
+		}
+		
+		.member li {
+			float: left;
+			margin: 5px 20px;
+			color: #2f2a2a;
+		}
+		
+		.member img {
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+		}
+		
+		#tipDiv {
+			display: none;
+			position: absolute;
+			left: 39%;
+			top: 230px;
+			z-index: 9999;
+			background: #d9d9d9;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		
+		#tipInfo {
+			margin-top: 10px;
+		}
+	</style>
+
+	<body>
+		<div id="tipDiv">
+			<center><img style="width:25px;" src="img/5-121204193R5-50.gif"></center>
+			<div id="tipInfo"></div>
+		</div>
+		<div id="d">
+
+			<div class="content_center">
+				<p style="width: 22%; margin-left: 20px ; float: left;"><span>*</span>项目名称：</p>
+				<input type="text" style="width: 60%; margin-right: 10px ; text-align: right; height: 40px;" value="" placeholder="请输入项目名称" id='projectName' />
+			</div>
+
+			<div class="content_center">
+				<p style="width: 22%; margin-left: 20px ; float: left;"><span>*</span>项目经理：</p>
+				<p style="width: 60%; margin-right: 10px ; text-align: right;color: #a9a9a9;" id="trigger4">请选择&nbsp;&nbsp;></p>
+			</div>
+			<div class="content_center" style="border-bottom: 1px #CCCCCC solid; margin-bottom: 0;">
+				<p style="font-size: 18px; font-weight: bolder;">成员列表</p>
+				<a href="departmentList.html" id='addBtn'>
+					<button style="background-color: #FFFFFF; color: #169bd5;font-weight:bold ;">添加成员</button>
+					<img src="img/add.jpg" style="width: 15px;height: 15px;" />
+				</a>
+			</div>
+			<div class="member " style="width: 100%; background-color: #FFFFFF;">
+				<ul style="width: 100%;display: inline-block;" id='member'>
+
+					<!--<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>
+					<li> <img src="img/remove.jpg" />张三</li>-->
+
+				</ul>
+
+			</div>
+			<div class="content_center" style="position: absolute">
+				<div id="" style="width: 70%;height: 50px; margin: 20px auto; ">
+					<a href="projectManagement.html" id='cancelBtn'><button class="" style="float: left; background-color: #a9a9a9;color: #FFFFFF;">取消</button></a>
+					<a href="projectManagement.html" id='submitBtn'><button class="" style="float: right;background-color: #3c84d9;color: #FFFFFF;">提交</button></a>
+				</div>
+
+			</div>
+
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js"></script>
+
+	<script type="text/javascript">
+		//显示提示
+		function showTip(info) {
+			$('#tipInfo').html(info);
+			$('#tipDiv').show();
+		}
+		//初始加载提示	
+		//showTip('内容正在加载...');
+		//关闭提示	
+		function closeTip() {
+			$('#tipDiv').hide();
+		}
+		var dataList = []
+		var childs = []
+		var peopleData, manageData, manageId, departmentId;
+		var mobileSelect4
+		var wheels
+		$(function() {
+			
+			$.ajax({
+				type: "get",
+				url: userAddress + 'user/selectDepartment',
+				dataType: 'json',
+				async: true,
+				data: {},
+				beforeSend: function() {
+					//					showTip(info)
+					showTip('内容正在加载...')
+				},
+				complete: function() {
+					closeTip()
+				},
+				success: function(res) {
+					for(var i = 0; i < res.department.length; i++) {
+						dataList.push({
+							id: res.department[i].id,
+							value: res.department[i].name,
+							childs: []
+						});
+					}
+					dataList = dataList.slice(1)
+					$(dataList).each(function(index, ele) {
+						$.ajax({
+							type: "get",
+							url: userAddress + 'user/selectDepartmentUser',
+							async: false,
+							dataType: 'json',
+							data: {
+								"departmentId": ele.id
+							},
+							success: function(res) {
+								var childs = []
+								console.log(res)
+								for(var i = 0; i < res.userlist.length; i++) {
+									childs.push({
+										id: res.userlist[i].userid,
+										value: res.userlist[i].name,
+									});
+								}
+								ele.childs = childs
+							}
+						})
+					})
+					wheels = [{
+						data: dataList,
+					}]
+					mobileSelect4 = new MobileSelect({
+						trigger: '#trigger4',
+						title: '选择部门',
+						wheels: wheels,
+						cancelBtnColor: 'red',
+						transitionEnd: function(indexArr, data) {
+						},
+						keyMap: {
+							id: 'id',
+							value: 'value',
+							childs: 'childs'
+						},
+						callback: function(indexArr, data) {
+							console.log(data)
+							departmentId = data[0].id
+							manageId = data[1].id
+							peopleData = data[1].value
+						}
+					});
+					var editProject = sessionStorage.getItem('editProject')
+			editProject = JSON.parse(editProject);
+			var projectId = sessionStorage.getItem('projectId')
+			projectId = JSON.parse(projectId);
+			if(manages == null) {
+				$('#projectName').val('');		
+			} else {
+				$('#projectName').val(manages.projectName);
+				$('#trigger4').text(manages.projectManager)
+			}
+			if(editProject != null) {
+				var manages = {
+					'projectName': editProject.projectName,
+					'projectManager': editProject.projectManager,
+					'projectId': editProject.projectId,
+					'userId': editProject.puId,
+					"departmentId": editProject.pdId
+				}
+				var user = JSON.stringify(editProject.memberList);
+				user = JSON.parse(user)
+				var users = [];
+				for(var i = 0; i < user.length; i++) {
+					users.push({
+						"memberName": user[i].memberName,
+						"departmentId": user[i].mdId,
+						"userId": user[i].muId
+
+					})
+				}
+				sessionStorage.setItem('users', JSON.stringify(users));
+				sessionStorage.setItem('manages', JSON.stringify(manages));
+				sessionStorage.removeItem("editProject")
+			}
+			var manages = sessionStorage.getItem('manages')
+			manages = JSON.parse(manages);
+			if(manages != null) {
+				$('#projectName').val(manages.projectName)
+				$('#trigger4').text(manages.projectManager)
+			}
+			$('#member li img').off('click').on('click', function() {
+				sessionStorage.setItem('users', JSON.stringify(editProject.memberList));		
+				$(this).parent().remove()
+			})
+			var obj = sessionStorage.getItem('users');
+			obj = JSON.parse(obj);
+			var li;	
+			if(obj != null) {
+				for(var i = 0; i < obj.length; i++) {
+					li = `
+				 <li>
+				 <img src="img/remove.jpg" />${obj[i].memberName}
+				 </li>				
+				`
+					$('#member').append(li)
+				}
+			}
+			$('#member li img').off('click').on('click', function() {
+				obj.splice($(this).parent().index(), 1);
+				sessionStorage.setItem('users', JSON.stringify(obj));		
+				$(this).parent().remove()
+			})
+			//、1.点击添加成员，sessionStorage里面什么也没有，此时将项目名称与项目经理存进manages
+			$('#addBtn').off('click').on('click', function() {
+				if(peopleData != null) {
+					var manage = {
+						'projectName': $('#projectName').val(),
+						'projectManager': peopleData,
+						'userId': manageId,
+						"departmentId": departmentId
+					}
+					console.log(manage)
+					alert(manage)
+				} else {
+					var manage = {
+						'projectName': $('#projectName').val(),
+						'projectManager': manages.projectManager,
+						'userId': manages.userId,
+						"departmentId": manages.departmentId
+					}
+				}
+				sessionStorage.removeItem('manages')
+				sessionStorage.setItem('manages', JSON.stringify(manage));
+			})
+			var parameter
+			$('#submitBtn').on('click', function() {
+				if(peopleData == null) {
+					manage = {
+						'projectName': $('#projectName').val(),
+						'projectManager': manages.projectManager,
+						'userId': manages.userId,
+						"departmentId": manages.departmentId
+					}
+				} else {
+					manage = {
+						'projectName': $('#projectName').val(),
+						'projectManager': peopleData,
+						'userId': manageId,
+						"departmentId": departmentId
+					}
+				}
+				sessionStorage.setItem('manages', JSON.stringify(manage));
+				parameter = {
+					'projectName': $('#projectName').val(),
+					'projectManager': JSON.parse(sessionStorage.getItem('manages')).projectManager,
+					'projectKind': 0,
+					'userId': JSON.parse(sessionStorage.getItem('manages')).userId,
+					'members': JSON.parse(sessionStorage.getItem('users')),
+					'departmentId': JSON.parse(sessionStorage.getItem('manages')).departmentId,
+					"projectId": projectId
+				}
+				if(sessionStorage.getItem("projectId") == null) {
+					$.ajax({
+						type: "post",
+						url: projectAddress + 'project/AddProjectAndMember',
+						async: false,
+						contentType: 'application/json;charset=UTF-8',
+						data: JSON.stringify(parameter),
+						dataType: "text",
+						success: function(res) {
+							sessionStorage.removeItem('manages')
+							sessionStorage.removeItem('users')
+							sessionStorage.removeItem('projectId')
+						}
+					});
+				} else {
+					$.ajax({
+						type: "post",
+						url: projectAddress + 'project/UpdateProject',
+						async: false,
+						contentType: 'application/json;charset=UTF-8',
+						data: JSON.stringify(parameter),
+						dataType: "text",
+						success: function(res) {
+							sessionStorage.removeItem('manages')
+							sessionStorage.removeItem('users')
+							sessionStorage.removeItem('projectId')
+						},
+						error: function(res) {
+						}
+					});
+				}
+			})
+			$('#cancelBtn').on('click', function() {
+				sessionStorage.removeItem('manages')
+				sessionStorage.removeItem('users')
+				sessionStorage.removeItem("editProject")
+				sessionStorage.removeItem('projectId')
+			})
+				}
+			});
+		});
+	</script>
+
+</html>

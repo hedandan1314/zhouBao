@@ -1,0 +1,211 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：项目成员列表
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>成员列表</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #eff5fb;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		.content {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.member {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.concent:last-child {
+			margin-bottom: 0px;
+		}
+		
+		.content p {
+			display: block;
+			width: 90%;
+			margin: 10px auto;
+		}
+		
+		.content span {
+			color: #E72F2E;
+		}
+		
+		.content textarea {
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin: 10px auto;
+			border: 0;
+			outline: none;
+			resize: none;
+			padding-left: 5px;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+		}
+		
+		#planned_amount input {
+			background-image: url(img/per.png);
+			background-repeat: no-repeat;
+			background-size: 7% 40%;
+			background-position: right center;
+			padding-right: 5%;
+		}
+		
+		.content button {
+			width: 100px;
+			height: 40px;
+			border-radius: 5px;
+			border: none;
+		}
+		
+		.list {
+			width: 90%;
+			height: 40px;
+			margin: 0 auto;
+			line-height: 40px;
+		}
+		
+		.content label {
+			font-size: 14px;
+			text-align: center;
+		}
+		
+		input[type="checkbox"] {
+			height: 20px;
+			width: 20px;
+			-webkit-appearance: none;
+			vertical-align: middle;
+			margin-top: 0;
+			background: #fff;
+			border: #999 solid 1px;
+			border-radius: 3px;
+			min-height: 12px;
+			min-width: 12px;
+		}
+		
+		input[type="checkbox"]:checked {
+			background: #3190e8;
+		}
+		
+		input[type=checkbox]:checked::before {
+			content: '\2714';
+			position: absolute;
+			color: #FFFFFF;
+			border-top: none;
+			border-right: none;
+			height: 6px;
+			width: 10px;
+			font-weight: bold;
+			margin: 0px 2px;
+		}
+	</style>
+
+	<body>
+		<div class="tittle">
+			<p>成员列表</p>
+		</div>
+		<div class="content">
+			<p style="width: 40%; margin-left: 20px ; float: left;"><span>*</span>选择部门</p>
+			<p style="width: 40%; margin-right: 10px ; text-align: right;color: #a9a9a9;" id="trigger4">请选择&nbsp;&nbsp;></p>
+		</div>
+		<div class="content_list">
+			<div class="member">
+				<div class="list">
+					<div style="float: left;"><label style="margin: 0px;">张三 </label></div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>
+			<div class="member">
+				<div class="list">
+					<div style="float: left;"><label style="margin: 0px;">张三 </label></div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>
+			<div class="member">
+				<div class="list">
+					<div style="float: left;"><label style="margin: 0px;">张三 </label></div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>
+		</div>
+		<div class="content" style="position: absolute;">
+			<div id="" style="width: 70%;height: 50px; margin: 20px auto; ">
+				<a href="newProject.html"><button class="" style="float: left; background-color: #a9a9a9;color: #FFFFFF;">取消</button></a>
+				<a href="newProject.html"><button class="" style="float: right;background-color: #169bd5;color: #FFFFFF;">提交</button></a>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var mobileSelect4 = new MobileSelect({
+			trigger: '#trigger4',
+			title: '工作进度',
+			wheels: [{
+				data: [{
+						id: '1',
+						value: '所部',
+					},
+					{
+						id: '2',
+						value: '综合事务管理部',
+					},
+					{
+						id: '3',
+						value: '市场销售管理部'
+					},
+					{
+						id: '4',
+						value: '科技质量管理部'
+					},
+					{
+						id: '5',
+						value: '智能机器人产品研发中心'
+					},
+				]
+			}],
+			cancelBtnColor: 'red',
+
+			transitionEnd: function(indexArr, data) {
+
+			},
+			callback: function(indexArr, data) {
+				console.log(data[0].id)
+
+			}
+		});
+	</script>
+
+</html>

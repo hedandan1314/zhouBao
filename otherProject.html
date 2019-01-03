@@ -1,0 +1,307 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：我的项目菜单
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>其他项目</title>
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			function init() {
+
+				// 设定每一行的宽度=屏幕宽度+按钮宽度
+				$(".line-scroll-wrapper").width($(".line-wrapper").width() + $(".line-btn-delete").width());
+				// 设定常规信息区域宽度=屏幕宽度
+				$(".line-normal-wrapper").width($(".line-wrapper").width());
+				// 设定文字部分宽度（为了实现文字过长时在末尾显示...）
+				$(".line-normal-msg").width($(".line-normal-wrapper").width() - 280);
+
+				// 获取所有行，对每一行设置监听
+				var lines = $(".line-normal-wrapper");
+				var len = lines.length;
+				var lastX, lastXForMobile;
+
+				// 用于记录被按下的对象
+				var pressedObj; // 当前左滑的对象
+				var lastLeftObj; // 上一个左滑的对象
+
+				// 用于记录按下的点
+				var start;
+
+				// 网页在移动端运行时的监听
+				for(var i = 0; i < len; ++i) {
+					lines[i].addEventListener('touchstart', function(e) {
+						lastXForMobile = e.changedTouches[0].pageX;
+						pressedObj = this; // 记录被按下的对象 
+
+						// 记录开始按下时的点
+						var touches = event.touches[0];
+						start = {
+							x: touches.pageX, // 横坐标
+							y: touches.pageY // 纵坐标
+						};
+					});
+
+					lines[i].addEventListener('touchmove', function(e) {
+						// 计算划动过程中x和y的变化量
+						var touches = event.touches[0];
+						delta = {
+							x: touches.pageX - start.x,
+							y: touches.pageY - start.y
+						};
+
+						// 横向位移大于纵向位移，阻止纵向滚动
+						if(Math.abs(delta.x) > Math.abs(delta.y)) {
+							event.preventDefault();
+						}
+					});
+
+					lines[i].addEventListener('touchend', function(e) {
+						if(lastLeftObj && pressedObj != lastLeftObj) { // 点击除当前左滑对象之外的任意其他位置
+							$(lastLeftObj).animate({
+								marginLeft: "0"
+							}, 250); // 右滑
+							lastLeftObj = null; // 清空上一个左滑的对象
+						}
+						var diffX = e.changedTouches[0].pageX - lastXForMobile;
+						if(diffX < -150) {
+
+							$(pressedObj).animate({
+								marginLeft: "-120px"
+							}, 250); // 左滑
+
+							lastLeftObj && lastLeftObj != pressedObj &&
+								$(lastLeftObj).animate({
+									marginLeft: "0"
+								}, 250); // 已经左滑状态的按钮右滑
+							lastLeftObj = pressedObj; // 记录上一个左滑的对象
+						} else if(diffX > 150) {
+							if(pressedObj == lastLeftObj) {
+								$(pressedObj).animate({
+									marginLeft: "0"
+								}, 250); // 右滑
+								lastLeftObj = null; // 清空上一个左滑的对象
+							}
+						}
+					});
+				}
+			}
+
+			$(function() {
+				init();
+			});
+		</script>
+	</head>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		
+		.others {
+			margin-bottom: 50px;
+		}
+		
+		.line-scroll-wrapper {
+			white-space: nowrap;
+			height: 90px;
+			clear: both;
+		}
+		
+		.line-wrapper {
+			width: 100%;
+			height: 90px;
+			overflow: hidden;
+			border-bottom: 2px solid #d9e1e7;
+		}
+		
+		.line-btn-delete {
+			float: left;
+			width: 120px;
+			height: 90px;
+		}
+		
+		.line-btn-delete button {
+			width: 50%;
+			height: 100%;
+			background: red;
+			border: none;
+			font-size: 14px;
+			color: #fff;
+			float: left;
+		}
+		
+		.line-normal-wrapper {
+			float: left;
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		
+		.news {
+			width: 98%;
+			height: 70px;
+			background-color: #FFFFFF;
+			/*border-bottom: 1px #cfcfcf solid;*/
+			margin: 10px auto;
+		}
+		
+		.news_left {
+			width: 15%;
+			float: left;
+		}
+		
+		.news_right {
+			width: 84%;
+			float: left;
+			border-left: 2px #d9e1e7 solid;
+			margin-bottom: 20px;
+		}
+		
+		.news_right p {
+			font-weight: bold;
+			color: #000306;
+		}
+		
+		.news_time {
+			width: 95%;
+			height: 90%;
+			text-align: center;
+			line-height: 30px;
+		}
+		
+		.news_time span {
+			display: block;
+		}
+		
+		.news_tittle {
+			width: 95%;
+			height: 60px;
+			margin: 0 auto;
+			text-align: center;
+			line-height: 30px;
+		}
+		
+		.news_tittle p {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-size: 14px;
+		}
+		
+		.news_tittle label {
+			font-size: 12px;
+			text-align: center;
+		}
+		
+		.color-input-red {
+			vertical-align: middle;
+			width: 20px;
+		}
+		
+		.search {
+			background-color: #ececed;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			font-size: 18px;
+			font-weight: bolder;
+		}
+		
+		.foot_nav {
+			width: 100%;
+			height: 50px;
+			background-color: #f9f8f8;
+			font-size: 12px;
+			position: fixed;
+			bottom: 0px;
+		}
+		
+		.foot_nav ul {
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.foot_nav ul li {
+			display: inline-block;
+			width: 32%;
+			min-width: 60px;
+			margin: 4px 0px;
+		}
+		
+		.foot_nav a {
+			display: block;
+			margin: 0 auto;
+			color: #b3b7a6;
+		}
+		
+		.foot_nav img {
+			display: block;
+			width: 25px;
+			height: 25px;
+			margin: 0 auto;
+		}
+		
+		.states {
+			width: 80%;
+			margin: 0 auto;
+			display: inline-block;
+		}
+		
+		.add {
+			background-color: #3caef7;
+			width: 60px;
+			height: 30px;
+			border-radius: 5px;
+			border: none;
+			font-size: 12px;
+			color: #FFFFFF;
+		}
+	</style>
+
+	<body>
+		<div style="width: 100%; height: auto;">
+
+			<div class="newAdd" style=" width: 95%; margin: 5px auto; border-bottom: 1px #cfcfcf solid ;">
+				<img src="img/add.jpg" style="margin-right: 5px;height: 20px;" />
+				<button class="add" onclick="add()" style="margin-bottom: 5px;">新增项目</button>
+			</div>
+			<div class="others">
+
+			</div>
+
+			<!--底部菜单-->
+			<div class="foot_nav">
+				<nav>
+					<ul>
+						<li>
+							<a href="index.html" style="text-decoration: none; color: #3c84d9"><img src="img/myPorject1.jpg" /><span>我的周报</span></a>
+						</li>
+						<li>
+							<a href="synthesize.html" style="text-decoration: none;"><img src="img/synthesize.png" /><span>综合管理</span></a>
+						</li>
+						<li>
+							<a href="personage.html" style="text-decoration: none;"><img src="img/personage.png" /><span>个人中心</span></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/personage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/otherProject.js" type="text/javascript" charset="utf-8"></script>
+
+	<script type="text/javascript">
+	</script>
+
+</html>

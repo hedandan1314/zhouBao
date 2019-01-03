@@ -1,0 +1,176 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：我的周报首页
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>周报填写</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #efeff4;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		.content {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 15px;
+			margin-top: 10px;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.concent:last-child {
+			margin-bottom: 0px;
+		}
+		
+		.content p {
+			display: block;
+			width: 90%;
+			margin: 10px auto;
+			font-weight: bold;
+			color: #000306;
+		}
+		
+		.content span {
+			color: #E72F2E;
+		}
+		
+		.content textarea {
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin: 10px auto;
+			border: 0;
+			outline: none;
+			resize: none;
+			padding-left: 5px;
+			font-size: 13px;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+		}
+		
+		#planned_amount input {
+			background-image: url(img/per.png);
+			background-repeat: no-repeat;
+			background-size: 7% 40%;
+			background-position: right center;
+			padding-right: 5%;
+		}
+		
+		.content button {
+			width: 100px;
+			height: 40px;
+			border-radius: 5px;
+			border: none;
+			font-weight: bold;
+		}
+		
+		.weeklyAmount {
+			width: 60%;
+			margin-right: 10px;
+			text-align: right;
+			height: 40px;
+		}
+	</style>
+
+	<body>
+		<div class="tittle">
+			<p></p>
+		</div>
+
+		<div class="content">
+			<p><span>*</span>本周实际工作内容</p>
+			<textarea class="weeklyContext" name="" rows="" cols="" placeholder="请输入"></textarea>
+		</div>
+		<div class="content">
+			<p style="width: 40%; margin-left: 20px ; float: left;"><span>*</span>完成情况</p>
+			<p style="width: 40%; margin-right: 10px ; text-align: right;font-weight: 100;color: #a9a9a9;" id="trigger4">请选择&nbsp;&nbsp;></p>
+		</div>
+		<div class="content" id="postpone" style="display: none;">
+			<p><span>*</span>延期原因</p>
+			<textarea class="weeklyCause" name="" rows="" cols="" placeholder="请输入"></textarea>
+		</div>
+		<div class="content">
+			<p><span>*</span>下周工作计划</p>
+			<textarea class="weeklyPlan" name="" rows="" cols="" placeholder="请输入"></textarea></div>
+		<div class="content" id="planned_amount">
+			<p style="width: 30%; margin-left: 20px ; float: left;"><span>*</span>计划完成量</p>
+			<input class="weeklyAmount" type="number" pattern="[0-9]*" placeholder="请输入" />
+		</div>
+		<div class="content">
+			<p >&nbsp;备注</p>
+			<textarea class="weeklyRemark" name="" rows="" cols="" placeholder="请输入"></textarea>
+		</div>
+		<div class="content" style="position: absolute;">
+			<div id="" style="width: 70%;height: 50px; margin: 20px auto; ">
+				<a href="myProject .html"><button class="" style="float: left;  background-color: #FFFFFF;color: #f82c2c;border:1px #f82c2c solid;">取消</button></a>
+				<a class="request" href="myProject .html"><button style="float: right;background-color: #FFFFFF;color: #3c84d9; border:1px #3c84d9 solid;">提交</button></a>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/personage.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/weeklyFill.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var mobileSelect4 = new MobileSelect({
+			trigger: '#trigger4',
+			title: '工作进度',
+			wheels: [{
+				data: [{
+						id: '1',
+						value: '延期',
+					},
+					{
+						id: '2',
+						value: '正常',
+					},
+					{
+						id: '3',
+						value: '提前'
+					},
+				]
+			}],
+			cancelBtnColor: 'red',
+
+			transitionEnd: function(indexArr, data) {
+
+			},
+			callback: function(indexArr, data) {
+				weeklyKind = data[0].value;
+				$("#trigger4").attr("value", data[0].id);
+				if(data[0].id == 1) {
+					$("#postpone").show();
+				} else {
+					$("#postpone").hide();
+				}
+			}
+		});
+	</script>
+
+</html>

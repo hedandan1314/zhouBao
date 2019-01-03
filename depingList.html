@@ -1,0 +1,296 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：部门评分人添加
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>添加部门评分人</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #eff5fb;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		.content {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			margin-bottom: 10px;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.concent:last-child {
+			margin-bottom: 0px;
+		}
+		
+		.content p {
+			display: block;
+			width: 90%;
+			margin: 10px auto;
+			font-weight: bold;
+			color: #000306;
+		}
+		
+		.content span {
+			color: #E72F2E;
+		}
+		
+		.content textarea {
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin: 10px auto;
+			border: 0;
+			outline: none;
+			resize: none;
+			padding-left: 5px;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+		}
+		
+		#planned_amount input {
+			background-image: url(img/per.png);
+			background-repeat: no-repeat;
+			background-size: 7% 40%;
+			background-position: right center;
+			padding-right: 5%;
+		}
+		
+		.content button {
+			width: 60px;
+			height: 40px;
+			border-radius: 5px;
+			border: none;
+			margin-left: 5%;
+		}
+		
+		.member img {
+			width: 15px;
+			height: 15px;
+			margin-right: 5px;
+		}
+		
+		.member li {
+			color: #2f2a2a;
+			float: left;
+			margin: 5px 20px;
+		}
+		#tipDiv {
+			display: none;
+			position: absolute;
+			left: 39%;
+			top: 230px;
+			z-index: 9999;
+			background: #d9d9d9;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		
+		#tipInfo {
+			margin-top: 10px;
+		}
+	</style>
+
+	<body>
+		<div id="tipDiv">
+			<center><img style="width:25px;" src="img/5-121204193R5-50.gif"></center>
+			<div id="tipInfo"></div>
+		</div>
+		<div class="content">
+			<p style="width: 40%; margin-left: 20px ; float: left;"><span>*</span>添加主评分人：</p>
+			<p style="width: 40%; font-weight: 300; margin-right: 10px ; text-align: right;color: #a9a9a9;" id="trigger4">请选择&nbsp;&nbsp;></p>
+		</div>
+
+		<div class="content">
+			<p style="width: 40%; margin-left: 20px ; float: left;"><span>*</span>添加辅评分人：</p>
+			<p style="width: 40%; font-weight: 300; margin-right: 10px ; text-align: right;color: #a9a9a9;" id="trigger5">请选择&nbsp;&nbsp;></p>
+		</div>
+		<div class="content" style="border-bottom: 1px #CCCCCC solid; margin-bottom: 0;">
+			<p style="font-size: 18px; font-weight: bolder;">成员列表</p>
+			<a href="peopleList.html" id='addBtn'>
+				<button style="background-color: #FFFFFF; color: #169bd5;font-weight:bold ;">添加成员</button>
+				<img src="img/add.jpg" style="width: 15px;height: 15px;" />
+			</a>
+		</div>
+		<div class="member " style="width: 100%;background-color: #FFFFFF;">
+			<ul style="width: 100%;display: inline-block;"id='member'>
+				<!--<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>
+				<li> <img src="img/remove.jpg" />张三</li>-->
+
+			</ul>
+
+		</div>
+		<div class="content" style="position: absolute;">
+			<div id="" style="width: 70%;height: 50px; margin: 20px auto; ">
+				<a href="synthesize.html"><button class="" style="float: left; background-color: #a9a9a9;color: #FFFFFF;">取消</button></a>
+				<a href="synthesize.html"><button class="" style="float: right;background-color: #3c84d9;color: #FFFFFF;">提交</button></a>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/ipAdress.js"></script>
+	<script type="text/javascript">
+			//显示提示
+		function showTip(info) {
+			$('#tipInfo').html(info);
+			$('#tipDiv').show();
+		}
+		//初始加载提示	
+		//showTip('内容正在加载...');
+		//关闭提示	
+		function closeTip() {
+			$('#tipDiv').hide();
+		}
+		var dataList = []
+		var childs = []
+		var peopleData, manageData, manageId, departmentId;
+		var mobileSelect4,mobileSelect5
+		var wheels
+		$(function() {			
+			$.ajax({
+				type: "get",
+				url: userAddress + 'user/selectDepartment',
+				dataType: 'json',
+				async: true,
+				data: {},
+				beforeSend: function() {
+					//					showTip(info)
+					showTip('内容正在加载...')
+				},
+				complete: function() {
+					closeTip()
+				},
+				success: function(res) {
+					for(var i = 0; i < res.department.length; i++) {
+						dataList.push({
+							id: res.department[i].id,
+							value: res.department[i].name,
+							childs: []
+						});
+					}
+					dataList = dataList.slice(1)
+					$(dataList).each(function(index, ele) {
+						$.ajax({
+							type: "get",
+							url: userAddress + 'user/selectDepartmentUser',
+							async: false,
+							dataType: 'json',
+							data: {
+								"departmentId": ele.id
+							},
+							success: function(res) {
+								var childs = []
+								console.log(res)
+								for(var i = 0; i < res.userlist.length; i++) {
+									childs.push({
+										id: res.userlist[i].userid,
+										value: res.userlist[i].name,
+									});
+								}
+								ele.childs = childs
+							}
+						})
+					})
+					wheels = [{
+						data: dataList,
+					}]
+					//主评分人
+					mobileSelect4 = new MobileSelect({
+						trigger: '#trigger4',
+						title: '选择部门',
+						wheels: wheels,
+						cancelBtnColor: 'red',
+						transitionEnd: function(indexArr, data) {
+						},
+						keyMap: {
+							id: 'id',
+							value: 'value',
+							childs: 'childs'
+						},
+						callback: function(indexArr, data) {
+							console.log(data)
+							departmentId = data[0].id
+							manageId = data[1].id
+							peopleData = data[1].value
+						}
+					});
+					//辅评分人
+					mobileSelect5 = new MobileSelect({
+						trigger: '#trigger5',
+						title: '选择部门',
+						wheels: wheels,
+						cancelBtnColor: 'red',
+						transitionEnd: function(indexArr, data) {
+						},
+						keyMap: {
+							id: 'id',
+							value: 'value',
+							childs: 'childs'
+						},
+						callback: function(indexArr, data) {
+							console.log(data)
+							departmentId = data[0].id
+							manageId = data[1].id
+							peopleData = data[1].value
+						}
+					});
+					}
+	
+})
+			//添加成员按钮点击保存主评分人与辅评分人信息到session
+			$('#addBtn').on('click',function(){
+				
+			})
+			var obj = sessionStorage.getItem('users');
+			obj = JSON.parse(obj);
+			var li;	
+			if(obj != null) {
+				for(var i = 0; i < obj.length; i++) {
+					li = `
+				 <li>
+				 <img src="img/remove.jpg" />${obj[i].memberName}
+				 </li>				
+				`
+					$('#member').append(li)
+				}
+			}
+			$('#member li img').off('click').on('click', function() {
+				obj.splice($(this).parent().index(), 1);
+				sessionStorage.setItem('users', JSON.stringify(obj));		
+				$(this).parent().remove()
+			})
+			})
+	</script>
+
+</html>

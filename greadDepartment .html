@@ -1,0 +1,292 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：部门评分
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>部门评分</title>
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #eff5fb;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		
+		.content_list {
+			width: 95%;
+			height: 30%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			margin: 10px auto;
+			border-radius: 5px
+		}
+		
+		.content_list:last-child {
+			margin-bottom: 60px;
+		}
+		
+		.til {
+			width: 25%;
+			margin: 5px;
+			text-align: right;
+			float: left;
+			font-size: 14px;
+			font-weight: bold;
+			color: #000306;
+		}
+		
+		.till {
+			width: 60%;
+			text-align: left;
+			float: left;
+			margin: 5px;
+			font-size: 13px;
+			color: #2f2a2a;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+			width: 65%;
+			margin-right: 10px;
+			text-align: right;
+			height: 30px;
+		}
+		
+		.content_foot {
+			background-color: #FFFFFF;
+			font-size: 15px;
+			position: fixed;
+			width: 100%;
+			line-height: 50px;
+			display: inline-block;
+			bottom: 0px;
+			font-weight: bold;
+		}
+		
+		.content_foot button {
+			width: 60px;
+			height: 30px;
+			border-radius: 5px;
+			font-weight: bold;
+			margin-right: 20px;
+		}
+		
+		.content_foot span {
+			font-size: 18px;
+			color: #3C84D9;
+		}
+		
+		.fill_tittle {
+			width: 100%;
+			height: 40px;
+			background-color: #FFFFFF;
+			line-height: 40px;
+			font-size: 16px;
+			font-weight: bold;
+			border-bottom: 1px #cfcfcf solid;
+			display: inline-block;
+		}
+		
+		.fill_concent {
+			margin: 0 auto;
+			width: 90%;
+			padding: 10px 0px;
+		}
+		
+		.fill_concent p {
+			font-size: 14px;
+			text-align: justify;
+		}
+		
+		.fill_concent p:first-child {
+			font-weight: bold;
+		}
+		
+		.show {
+			position: absolute;
+			background-color: #CCCCCC;
+			width: 100%;
+			height: 100%;
+			opacity: 0.4;
+			display: none;
+		}
+		
+		.show_fill {
+			width: 100%;
+			height: 0px;
+			background-color: white;
+			position: fixed;
+			bottom: 0;
+			text-align: center;
+		}
+	</style>
+
+	<body>
+		<div class="gread" style=" margin-bottom: 60px;">
+			<div class="tittle">
+				<p>江苏集萃部门评分</p>
+			</div>
+			<div class="tittle " style="border-top: 1px #ececed solid; font-size: 14px;">
+				<p style="display: inline-block;width: 49%;border-right: 1px #ececed solid;" class="mainScore">主评分入口</p>
+				<p style="display: inline-block;width: 49%;" class="auxiliaryScore">辅评分入口</p>
+			</div>
+
+			<div class="concent_main">
+				<div class="noData" style="width: 100; height: 20px; margin-top: 10px;text-align: center;color: #adadad; display: none;">
+					<p>暂无更多数据</p>
+				</div>
+				<div class="concent">
+
+				</div>
+
+				
+			</div>
+		</div>
+		<!--周报隐藏层-->
+		<div class="show" onclick="hide()"></div>
+		<div class="show_fill">
+			<div style="overflow-y: scroll;height: 100%;">
+				<div style="width: 100%;background-color: #FFFFFF;">
+					<div class="fill" style="width: 100%;">
+						<div class="fill_tittle">
+							<div style="width: 20%; margin: 0 auto;display: inline-block;">
+								<p>周报内容</p>
+							</div>
+							<div style="width: 40px;height: 20px; float: right;" onclick="hide()">
+								<img src="img/close.png" style="width: 20px; height: 20px; margin: 0 auto; display:block;" />
+							</div>
+						</div>
+						<div style="width: 100%;background-color: #FFFFFF; ">
+							<div class="fill_concent">
+								<p>本周工作计划：</p>
+								<p class="weeklyContext"></p>
+							</div>
+							<div class="fill_concent">
+								<p style="float: left;">完成情况：</p>
+								<p class="weeklyStatus" style="text-align: right;"></p>
+							</div>
+							<div class="fill_concent">
+								<p>延迟原因：</p>
+								<p class="weeklyCause"></p>
+							</div>
+							<div class="fill_concent">
+								<p>下周工作计划：</p>
+								<p class="weeklyPlan"></p>
+							</div>
+							<div class="fill_concent">
+								<p style="float: left;">计划完成量：</p>
+								<p style="text-align: right;" class="weeklyAmount"></p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/greadDepartment.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function show(obj) {
+			var userid = $(obj).attr("value");
+			projectId = $(obj).attr("class");
+			$(".show").show();
+			$(".show_fill").css("padding-top", "15px");
+			$(".gread").css("position", "fixed");
+			$(".gread").css("overflow", "hidden");
+			$(".show_fill").animate({
+				height: "80%"
+			});
+			$.ajax({
+				type: "post",
+				url: weeklyAddress + "weekly/SelectWekklyScore",
+				data: {
+					userId: userid,
+					projectId: projectId
+				},
+				success: function(msg) {
+					if(msg == "") {
+						$(".weeklyContext").text("");
+						$(".weeklyStatus").text("");
+						$(".weeklyCause").text("");
+						$(".weeklyPlan").text("");
+						$(".weeklyAmount").text("");
+					} else {
+						var weeklyStatus;
+						if(msg.weeklyStatus == 1) {
+							weeklyStatus == "延期";
+						} else if(msg.weeklyStatus == 0) {
+							weeklyStatus == "正常";
+						} else {
+							weeklyStatus == "提前";
+						}
+						if(msg.weeklyCause == "") {
+							$("#later").hide();
+						}
+						$(".weeklyContext").text(msg.weeklyContext);
+						$(".weeklyStatus").text(weeklyStatus);
+						$(".weeklyCause").text(msg.weeklyCause);
+						$(".weeklyPlan").text(msg.weeklyPlan);
+						$(".weeklyAmount").text(msg.weeklyAmount + "%");
+					}
+
+				}
+
+			});
+		}
+
+		function hide() {
+			$(".show").hide();
+			$(".show_fill").css("padding-top", "0px");
+			$(".show_fill").animate({
+				height: "0px"
+			});
+		}
+
+		function change(obj) {
+			var numArr = [];
+			$('.score').each(function() {
+				if(isNaN(parseInt($(this).val()))) {
+					numArr.push(0);
+				} else {
+					numArr.push(parseFloat($(this).val()));
+				}
+			});
+			var sum = 0;
+			for(var i = 0; i < numArr.length; i++) {
+				sum = sum + numArr[i];
+			}
+			var residueScore = score - sum
+			if(residueScore < 0) {
+				alert("您的可分配分数已不足，请重新分配！")
+				$(".content_foot span").text((residueScore + parseFloat($(obj).val())).toFixed(2));
+				$(obj).val("");
+			} else {
+				$(".content_foot span").text(residueScore.toFixed(2));
+			}
+		}
+	</script>
+
+</html>

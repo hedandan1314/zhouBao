@@ -1,0 +1,182 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：个人中心首页
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>个人中心</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #efeff4;
+		}
+		
+		.tittle_img {
+			width: 100%;
+			height: 220px;
+			background-image: url(img/news_img.png);
+			background-repeat: no-repeat;
+			background-size: 100% 100%;
+			-moz-background-size: 100% 100%;
+		}
+		
+		.concent {
+			overflow: hidden;
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+			height: auto;
+		}
+		
+		.person {
+			overflow: hidden;
+			width: 100%;
+			height: auto;
+			background-color: #FFFFFF;
+			margin-bottom: 10px;
+		}
+		
+		.concent_nav {
+			background-color: #FFFFFF;
+			margin: 0 auto;
+			width: 50%;
+			height: 150px;
+			border-right: 1px #DDDDDD solid;
+			border-bottom: 1px #DDDDDD solid;
+			float: left;
+		}
+		
+		.concent_nav img {
+			width: 50px;
+			height: 50px;
+			display: block;
+			margin: 10px auto;
+			margin-top: 25px;
+		}
+		
+		.concent_nav span:last-child {
+			display: block;
+			color: #9e9e9e;
+			font-size: 12px;
+		}
+		
+		.foot_nav {
+			width: 100%;
+			height: 50px;
+			background-color: #f9f8f8;
+			font-size: 12px;
+			position: fixed;
+			bottom: 0px;
+		}
+		
+		.foot_nav ul {
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.foot_nav ul li {
+			display: inline-block;
+			width: 32%;
+			min-width: 60px;
+			margin: 4px 0px;
+		}
+		
+		.foot_nav a {
+			display: block;
+			margin: 0 auto;
+			color: #b3b7a6;
+		}
+		
+		.foot_nav img {
+			display: block;
+			width: 25px;
+			height: 25px;
+			margin: 0 auto;
+		}
+	</style>
+
+	<body>
+		<div style="width: 100%; height: auto;margin-bottom: 60px;">
+			<!--头部图片-->
+			<div class="tittle_img"> </div>
+			<!--个人资料-->
+			<div class="person">
+
+				<div style="    width: 70px;display: inline-block;position: absolute; top: 205px;left: 22px;background-color: white;border-radius: 5px;">
+					<img class="img" src="" style="width: 100%;display: block;margin: 0 auto; padding: 3px;" />
+				</div>
+				<div style="width:90%;margin: 5px 0px 10px 100px;">
+					<div style="width: 50%;display: inline-block;">
+						<span class="name" style="display: block;margin-bottom:5px;font-weight: bold; font-size:18px ;">
+					
+					</span>
+						<span class="department" style="color: #9e9e9e; font-size: 12px;">工业软件事业部</span>
+					</div>
+				</div>
+			</div>
+			<!--菜单栏-->
+			<div class="concent">
+				<a href="historyProject.html">
+					<div class="concent_nav">
+						<img src="img/historyProject.jpg" />
+						<span>历史项目</span>
+						<span>项目历史，一键查询</span>
+					</div>
+				</a>
+				<a href="scoreQuery.html">
+					<div class="concent_nav">
+						<img src="img/scoreFill.jpg" />
+						<span>周报及分数查询</span>
+						<span>周报&分数，便捷查询</span>
+					</div>
+				</a>
+				<a href="appeal.html">
+					<div class="concent_nav" id="appeal">
+						<img src="img/appeal.jpg" />
+						<span>查看申诉</span>
+						<span>申诉意见，快速查看</span>
+
+					</div>
+				</a>
+				<a href="allScore.html">
+					<div class="concent_nav" id="allScore">
+						<img src="img/allscor.jpg" />
+						<span>查看全部成绩</span>
+						<span>时刻了解全所成绩和工作进展</span>
+
+					</div>
+				</a>
+
+			</div>
+			<!--底部菜单-->
+			<div class="foot_nav">
+				<nav>
+					<ul>
+						<li>
+							<a href="index.html" style="text-decoration: none; "><img src="img/myPorject.png" /><span>我的周报</span></a>
+						</li>
+						<li>
+							<a href="synthesize.html" style="text-decoration: none;"><img src="img/synthesize.png" /><span>综合管理</span></a>
+						</li>
+						<li>
+							<a href="personage.html" style="text-decoration: none;color: #3c84d9"><img src="img/personage1.jpg" /><span>个人中心</span></a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/personage.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

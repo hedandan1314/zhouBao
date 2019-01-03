@@ -1,0 +1,269 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：部门成员列表
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>成员列表</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #eff5fb;
+		}
+		
+		.content {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 16px;
+			color: #050100;
+			border: 1px #e8e8e8 solid;
+		}
+		
+		.member {
+			width: 100%;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			border: 1px #d9e1e7 solid;
+		}
+		
+		.concent:last-child {
+			margin-bottom: 0px;
+		}
+		
+		.content p {
+			display: block;
+			width: 90%;
+			margin: 10px auto;
+			font-weight: bold;
+		}
+		
+		.content span {
+			color: #E72F2E;
+		}
+		
+		.content textarea {
+			display: block;
+			width: 90%;
+			height: 100px;
+			margin: 10px auto;
+			border: 0;
+			outline: none;
+			resize: none;
+			padding-left: 5px;
+		}
+		
+		input {
+			border: 0;
+			outline: none;
+			resize: none;
+		}
+		
+		#planned_amount input {
+			background-image: url(img/per.png);
+			background-repeat: no-repeat;
+			background-size: 7% 40%;
+			background-position: right center;
+			padding-right: 5%;
+		}
+		
+		.content button {
+			width: 100px;
+			height: 40px;
+			border-radius: 5px;
+			border: none;
+		}
+		
+		.list {
+			width: 90%;
+			height: 40px;
+			margin: 0 auto;
+			line-height: 40px;
+		}
+		
+		.name {
+			font-weight: 300;
+			color: #1f1e1e;
+			text-align: center;
+			margin: 0px;
+		}
+		
+		input[type="checkbox"] {
+			height: 20px;
+			width: 20px;
+			-webkit-appearance: none;
+			vertical-align: middle;
+			margin-top: 0;
+			background: #9599b2;
+			border: #999 solid 1px;
+			border-radius: 3px;
+			min-height: 12px;
+			min-width: 12px;
+		}
+		
+		input[type="checkbox"]:checked {
+			background: #3c84d9;
+		}
+	</style>
+
+	<body>
+		<div class="content">
+			<p style="width: 40%; margin-left: 20px ; float: left;"><span>*</span>选择部门</p>
+			<p style="width: 40%;	font-weight:300 ; margin-right: 10px ; text-align: right;color: #a9a9a9;" id="trigger4">请选择&nbsp;&nbsp;></p>
+		</div>
+		<div class="content_list">
+			<!--<div class="member">
+				<div class="list">
+					<div style="float: left;">
+						<p class="name">张三 </p>
+					</div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>
+			<div class="member">
+				<div class="list">
+					<div style="float: left;">
+						<p class="name">张三 </p>
+					</div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>
+			<div class="member">
+				<div class="list">
+					<div style="float: left;">
+						<p class="name">张三 </p>
+					</div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" /></div>
+				</div>
+			</div>-->
+		</div>
+		<div class="content" style="position: absolute; display: none;" id='selectBtn'>
+			<div id="" style="width: 70%;height: 50px; margin: 20px auto; ">
+				<a href="newProject.html"><button style="float: left; background-color: #a9a9a9;color: #FFFFFF;">取消</button></a>
+				<a href="newProject.html" id='submitBtn'><button style="float: right;background-color: #3c84d9;color: #FFFFFF;">提交</button></a>
+			</div>
+
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js"></script>
+	<script type="text/javascript">
+		var dataList = []
+		var peopleData;
+		$(function() {
+			$.ajax({
+				type: "get",
+				url: userAddress + 'user/selectDepartment',
+				async: true,
+				dataType: 'json',
+				data: {},
+				success: function(res) {
+					console.log(res)
+					for(var i = 0; i < res.department.length; i++) {
+						dataList.push({
+							id: res.department[i].id,
+							value: res.department[i].name
+						})
+					}
+					dataList = dataList.slice(1)
+					//console.log(dataList.slice(1))
+					var mobileSelect4 = new MobileSelect({
+						trigger: '#trigger4',
+						title: '选择部门',
+						wheels: [{
+							data: dataList
+						}],
+						cancelBtnColor: 'red',
+
+						transitionEnd: function(indexArr, data) {
+
+						},
+						callback: function(indexArr, data) {
+							peopleData = data[0].id;
+							$('.content_list').html('')
+							peopleList()
+							//console.log(data[0].id)
+						}
+					});
+
+				}
+			});
+
+			function peopleList() {
+				$.ajax({
+					type: "get",
+					url: userAddress + 'user/selectDepartmentUser',
+					async: true,
+					dataType: 'json',
+					data: {
+						"departmentId": peopleData
+					},
+					success: function(res) {
+						console.log(res)
+						for(var i = 0; i < res.userlist.length; i++) {
+							var htmlStr = `
+								<div class="member">
+				<div class="list">
+					<div style="float: left;">
+						<p class="name">${res.userlist[i].name} </p>
+					</div>
+					<div style="float: right;"><input id="color-input-red" name="Fruit" type="checkbox" value="" />
+					<input  name="" type="hidden" value=${res.userlist[i].userid} class='userid' />
+					</div>
+				</div>
+			</div>
+							`
+							$('.content_list').append(htmlStr)
+						}
+
+					}
+				});
+				$('#selectBtn').css('display', 'block')
+			}
+
+			$('#submitBtn').on('click', function() {
+				var Arr2 = [];
+				
+				var $trs = $('input[type=checkbox]:checked').parent().parent();
+				
+				$trs.each(function() { // 遍历项目成员信息				
+					var $trTemp = $(this);
+					//alert($trTemp.find('input[type=hidden]').val())
+					 Arr2.push({
+						'userId': $trTemp.find('input[type=hidden]').val(),
+						'departmentId':peopleData,
+						'memberName': $trTemp.find('.name').text()
+					})
+					 	var obj= sessionStorage.getItem('users')
+					obj= JSON.parse(obj)
+				if(obj==null){
+					
+					sessionStorage.setItem('users', JSON.stringify(Arr2));
+				}else{
+					Arr2=obj;
+					 Arr2.push({
+						'userId': $trTemp.find('input[type=hidden]').val(),
+						'departmentId':peopleData,
+						'memberName': $trTemp.find('.name').text()
+					})
+					 sessionStorage.setItem('users', JSON.stringify(Arr2));
+				}
+				})
+				
+				 
+				//localStorage.obj = JSON.stringify(Arr2);
+		
+			})
+		})
+	</script>
+
+</html>

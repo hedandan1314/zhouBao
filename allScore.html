@@ -1,0 +1,401 @@
+<!--
+	作者：孔繁丞
+	时间：2018-11-19
+	描述：项目评分
+-->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+		<title>查看全部成绩</title>
+		<link rel="stylesheet" type="text/css" href="css/monileSelect/mobileSelect.css" />
+		<link rel="stylesheet" type="text/css" href="css/reset.css" />
+		<script src="js/monileSelect/mobileSelect.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #efeff4;
+		}
+		
+		.tittle {
+			text-align: center;
+			width: 100%;
+			height: 50px;
+			line-height: 50px;
+			background-color: #4f77aa;
+			font-size: 18px;
+			color: #f0f5f8;
+			font-weight: bold;
+		}
+		
+		.content_tittle {
+			width: 100%;
+			height: 40px;
+			line-height: 40px;
+			background-color: #FFFFFF;
+			font-size: 14px;
+			margin: 0 auto;
+			border-bottom: 1px #CCCCCC solid;
+		}
+		
+		.til {
+			width: 25%;
+			text-align: center;
+			float: left;
+			font-size: 14px;
+			font-weight: bold;
+			color: #000306;
+		}
+		
+		.till {
+			width: 25%;
+			text-align: center;
+			float: left;
+			font-size: 13px;
+			color: #2f2a2a;
+		}
+		
+		.fill_tittle {
+			width: 95%;
+			border-bottom: 1px #cfcfcf solid;
+			display: inline-block;
+		}
+		
+		.fill_concent {
+			margin: 10px auto;
+			padding: 5px 0px;
+			width: 100%;
+			background-color: #FFFFFF;
+			border-radius: 10px;
+		}
+		
+		.fill_concent p {
+			font-size: 13px;
+			text-align: justify;
+			margin: 5px auto;
+			width: 95%;
+		}
+		
+		.fill_concent div:first-child p {
+			font-weight: bold;
+		}
+		
+		.show {
+			position: absolute;
+			background-color: #CCCCCC;
+			width: 100%;
+			height: 100%;
+			opacity: 0.4;
+			display: none;
+			bottom: 50px;
+		}
+		
+		.show_fill {
+			width: 100%;
+			height: 0px;
+			background-color: #DCDCDC;
+			position: fixed;
+			bottom: 50px;
+			text-align: center;
+		}
+		
+		.foot_nav {
+			width: 100%;
+			height: 50px;
+			background-color: #f9f8f8;
+			font-size: 12px;
+			position: fixed;
+			bottom: 0px;
+		}
+		
+		.foot_nav ul {
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
+		
+		.foot_nav ul li {
+			display: inline-block;
+			width: 32%;
+			min-width: 60px;
+			margin: 4px 0px;
+		}
+		
+		.foot_nav a {
+			display: block;
+			margin: 0 auto;
+			color: #b3b7a6;
+		}
+		
+		.foot_nav img {
+			display: block;
+			width: 25px;
+			height: 25px;
+			margin: 0 auto;
+		}
+	</style>
+
+	<body>
+		<div class="" style="position: absolute; margin-bottom: 60px; width: 100%;">
+			<div class="content_tittle" style="margin-bottom: 10px;">
+				<div style="display: inline-block; width: 100%;">
+					<p class="til" style="width: 25%;">请选择部门：</p>
+					<p style=" float: right; color: #a9a9a9; margin-right: 10px;" id="trigger4">请选择&nbsp;&nbsp;></p>
+				</div>
+				<div class="concent_list">
+
+				</div>
+			</div>
+
+		</div>
+		<!--底部菜单-->
+		<div class="foot_nav">
+			<nav>
+				<ul>
+					<li>
+						<a href="index.html" style="text-decoration: none;"><img src="img/myPorject.png" /><span>我的周报</span></a>
+					</li>
+					<li>
+						<a href="synthesize.html" style="text-decoration: none;"><img src="img/synthesize.png" /><span>综合管理</span></a>
+					</li>
+					<li>
+						<a href="personage.html" style="text-decoration: none;color: #3c84d9;"><img src="img/personage1.jpg" /><span>个人中心</span></a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!--周报隐藏层-->
+		<div class="show" onclick="hide()"></div>
+		<div class="show_fill">
+			<div style="overflow-y: scroll;height: 100%;">
+				<div style="width: 100%;">
+					<div class="fill" style="width: 100%;">
+						<div class="fill_tittle">
+
+							<div style=" float: right;" onclick="hide()">
+								<img src="img/close.png" style="width: 20px; height: 20px; margin: 0 auto; display:block; margin-bottom: 10px;" />
+							</div>
+						</div>
+						<div style="width: 95%; margin: 10px auto; ">
+
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>评分日期：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">2018-11-17</p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>部门得分：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">10<span>分</span></p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>项目得分：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">10<span>分</span></p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>综合得分：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">10<span>分</span></p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>主评分人：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">张三</p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>辅评分人：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">李四</p>
+								</div>
+							</div>
+							<div class="fill_concent">
+								<div style="width: 50%; float: left;">
+									<p>项目经理：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">李四</p>
+								</div>
+							</div>
+							<div class="fill_concent" style="display: none;">
+								<div>
+									<p>本周工作计划 ：</p>
+								</div>
+								<div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam iste nihil dolor eaque libero cumque repellat sit repellendus iusto hic culpa
+										perferendis suscipit numquam ipsa nostrum animi saepe fuga blanditiis officiis quas laudantium labore sapiente architecto ea quis voluptates
+										vero distinctio et sed ipsam. Magni adipisci voluptas deleniti quos possimus sunt quia odio dolor quisquam quasi quo maiores nobis eos qui blanditiis
+										distinctio itaque dignissimos magnam autem ipsum debitis nemo aperiam reiciendis laboriosam similique error eveniet necessitatibus libero pariatur
+										modi obcaecati tempora est inventore voluptatibus cupiditate consectetur tempore. Nihil a dolore autem dignissimos suscipit provident rem minima
+										eligendi quisquam?</p>
+								</div>
+							</div>
+							<div class="fill_concent" style="display: none;">
+								<div style="width: 50%; float: left;">
+									<p>完成情况：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">延期</p>
+								</div>
+							</div>
+							<div class="fill_concent" style="display: none;">
+								<div>
+									<p>延迟原因 ：</p>
+								</div>
+								<div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam iste nihil dolor eaque libero cumque repellat sit repellendus iusto hic culpa
+										perferendis suscipit numquam ipsa nostrum animi saepe fuga blanditiis officiis quas laudantium labore sapiente architecto ea quis voluptates
+										vero distinctio et sed ipsam. Magni adipisci voluptas deleniti quos possimus sunt quia odio dolor quisquam quasi quo maiores nobis eos qui blanditiis
+										distinctio itaque dignissimos magnam autem ipsum debitis nemo aperiam reiciendis laboriosam similique error eveniet necessitatibus libero pariatur
+										modi obcaecati tempora est inventore voluptatibus cupiditate consectetur tempore. Nihil a dolore autem dignissimos suscipit provident rem minima
+										eligendi quisquam?</p>
+								</div>
+							</div>
+							<div class="fill_concent" style="display: none;">
+								<div>
+									<p>下周工作计划 ：</p>
+								</div>
+								<div>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam iste nihil dolor eaque libero cumque repellat sit repellendus iusto hic culpa
+										perferendis suscipit numquam ipsa nostrum animi saepe fuga blanditiis officiis quas laudantium labore sapiente architecto ea quis voluptates
+										vero distinctio et sed ipsam. Magni adipisci voluptas deleniti quos possimus sunt quia odio dolor quisquam quasi quo maiores nobis eos qui blanditiis
+										distinctio itaque dignissimos magnam autem ipsum debitis nemo aperiam reiciendis laboriosam similique error eveniet necessitatibus libero pariatur
+										modi obcaecati tempora est inventore voluptatibus cupiditate consectetur tempore. Nihil a dolore autem dignissimos suscipit provident rem minima
+										eligendi quisquam?</p>
+								</div>
+							</div>
+							<div class="fill_concent" style="display: none;">
+								<div style="width: 50%; float: left;">
+									<p>计划完成量：</p>
+								</div>
+								<div>
+									<p style="text-align: right;">100<span>%</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/ipAdress.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		function show(obj) {
+			var userid = $(obj).attr("value");
+			$(".show").show();
+			$(".show_fill").css("padding-top", "15px");
+			$(".show_fill").animate({
+				height: "69%"
+			});
+
+			$.ajax({
+				type: "post",
+				url: scoreAddress + "totalSocre/selectScoreAll",
+				data: {
+					userId: userid
+				},
+				success: function() {
+
+				}
+			});
+		}
+
+		function hide() {
+			$(".show").hide();
+			$(".show_fill").css("padding-top", "0px");
+			$(".show_fill").animate({
+				height: "0px"
+			});
+		}
+		var dataList = [];
+		$.ajax({
+			type: "get",
+			url: userAddress + 'user/selectDepartment',
+			async: true,
+			dataType: 'json',
+			data: {},
+			success: function(msg) {
+				for(var i = 0; i < msg.department.length; i++) {
+					dataList.push({
+						id: msg.department[i].id,
+						value: msg.department[i].name
+					})
+				}
+				dataList = dataList.slice(1)
+				var mobileSelect4 = new MobileSelect({
+					trigger: '#trigger4',
+					title: '选择部门',
+					wheels: [{
+						data: dataList
+					}],
+					cancelBtnColor: 'red',
+
+					transitionEnd: function(indexArr, data) {
+
+					},
+					callback: function(indexArr, data) {
+						peopleData = data[0].id;
+						$('.concent_list').html('')
+						peopleList()
+					}
+				});
+
+			}
+		});
+
+		function peopleList() {
+			$.ajax({
+				type: "get",
+				url: userAddress + 'user/selectDepartmentUser',
+				async: false,
+				dataType: 'json',
+				data: {
+					"departmentId": peopleData
+				},
+				success: function(msg) {
+					for(var i = 0; i < msg.userlist.length; i++) {
+						var departmentid = msg.userlist[i].department[0];
+						$('.concent_list').append(
+							'<div class="content_tittle"><div style="display: inline-block; width: 100%;"><p class="til" style="width: 15%;">姓名：</p>' +
+							'<p class="till" style="width: 15%;">' + msg.userlist[i].name + '</p><p class="till ' + departmentid +
+							'" style="width: 40%;"></p>' +
+							'<p class="till" value="' + msg.userlist[i].userid + '" onclick="show(this)" style="float: right;">查看详情 >></p></div></div>');
+					}
+
+				}
+			});
+			$.ajax({
+				type: "post",
+				url: userAddress + "user/selectDepartment",
+				success: function(msg) {
+
+					for(var a = 0; a < msg.department.length; a++) {
+						$("." + msg.department[a].id).text(msg.department[a].name);
+					}
+				},
+			});
+		}
+	</script>
+
+</html>
